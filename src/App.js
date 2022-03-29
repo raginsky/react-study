@@ -1,6 +1,7 @@
-import NewExpenses from './components/NewExpenses';
+import NewExpenses from './components/Expenses/NewExpenses';
 
-function App() {
+// function App
+const App = () => {}
     const expenses = [
         {
             id: 'e1',
@@ -21,6 +22,17 @@ function App() {
             amount: 85.78
         },
     ];
+
+    /**
+     * An old approach
+     * [type, props, child]
+     * [html-element, object that configures previous element (sets attr), component between opening and closing tags]
+     *
+     return React.createElement('div', {},
+     React.createElement('h2', {}, 'Lets get started!'),
+     React.createElement(Expenses, {items: expenses})
+     );
+     */
 
     return (
         <div>
