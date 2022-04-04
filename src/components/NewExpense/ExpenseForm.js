@@ -1,27 +1,34 @@
 import {useState} from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
-    // individual State approach
-    // const [enteredTitle, setEnteredTitle] = useState('');
-    // const [enteredAmount, setEnteredAmount] = useState('');
-    // const [enteredDate, setEnteredDate] = useState('');
+const ExpenseForm = (props) => {
+    /** individual State approach */
+    const [enteredTitle, setEnteredTitle] = useState('');
+    const [enteredAmount, setEnteredAmount] = useState('');
+    const [enteredDate, setEnteredDate] = useState('');
 
-    // single State approach
-    const [userInput, setUserInput] = useState({
-        enteredTitle: '',
-        enteredAmount: '',
-        enteredDate: '',
-    });
+    /** single State approach */
+        // const [userInput, setUserInput] = useState({
+        //     enteredTitle: '',
+        //     enteredAmount: '',
+        //     enteredDate: '',
+        // });
 
     const titleChangeHandler = (event) => {
-        // setEnteredTitle(event.target.value);
-        setUserInput({
-            // data will be replaced for all without spread operator
-            ...userInput,
-            enteredTitle: event.target.value,
-        });
-    };
+            /** individual State approach call  */
+            setEnteredTitle(event.target.value);
+            /** single State approach, data will be replaced for all without spread operator,
+             * can cause problems in specific cases - since outdated previous state
+             * */
+            // setUserInput({
+            //     ...userInput,
+            //     enteredTitle: event.target.value,
+            // });
+            /** can guarantee that last state will be latest state snapshot */
+            // setUserInput((prevState) => {
+            //     return {...prevState, enteredTitle: event.target.value};
+            // });
+        };
     const amountChangeHandler = (event) => {
         setEnteredAmount(event.target.value);
     };
@@ -29,20 +36,38 @@ const ExpenseForm = () => {
         setEnteredDate(event.target.value);
     };
 
+    const submitHandler = (event) => {
+        event.preventDefault();
+
+        const expenseData = {
+            title: enteredTitle,
+            amount: enteredAmount,
+            date: new Date(enteredDate)
+        };
+
+        props.onSaveExpenseData(expenseData);
+        setEnteredTitle('');
+        setEnteredAmount('');
+        setEnteredDate('');
+    };
+
     return (
-        <form>
+        <form onSubmit={submitHandler}>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Title</label>
-                    <input type="text" onChange={titleChangeHandler}/>
+                    <input value={enteredTitle} type="text"
+                           onChange={titleChangeHandler}/>
                 </div>
                 <div className="new-expense__control">
                     <label>Amount</label>
-                    <input type="number" min="0.01" step="0.01" onChange={amountChangeHandler}/>
+                    <input value={enteredAmount} type="number" min="0.01" step="0.01"
+                           onChange={amountChangeHandler}/>
                 </div>
                 <div className="new-expense__control">
                     <label>Date</label>
-                    <input type="date" min="2019-01-01" max="2022-12-31" onChange={dateChangeHandler}/>
+                    <input value={enteredDate} type="date" min="2019-01-01" max="2048-12-31"
+                           onChange={dateChangeHandler}/>
                 </div>
             </div>
             <div className="new-expense__actions">
