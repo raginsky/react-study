@@ -6,13 +6,13 @@ import NewExpense from './components/NewExpense/NewExpense';
 const exampleData = [
     {
         id: 'e1',
-        date: new Date(2022, 2, 17),
+        date: new Date(2021, 2, 17),
         title: 'Car Insurance',
         amount: 349.50
     },
     {
         id: 'e2',
-        date: new Date(2022, 2, 18),
+        date: new Date(2019, 2, 18),
         title: 'New TV',
         amount: 500.50
     },
