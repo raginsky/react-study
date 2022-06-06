@@ -1,5 +1,5 @@
 import ChartBar from './ChartBar';
-import './Chart.csss';
+import './Chart.css';
 
 const Chart = props => {
     return <div className="chart">{props.dataPoints.map(dataPoint => <ChartBar
