@@ -2,20 +2,20 @@ import React, {useState} from 'react';
 import './CourseInput.css';
 
 const CourseInput = props => {
-    [enteredTitle, setEnteredTitle] = useState('');
+    const [enteredTitle, setEnteredTitle] = useState('');
 
     const titleChangeHandler = (e) => {
         setEnteredTitle(e.target.value);
-    }
+    };
 
     const submitHandler = (e) => {
         e.preventDefault();
         const data = {
-            title: enteredTitle;
-        }
+            title: enteredTitle,
+        };
         props.onAddData(data);
         setEnteredTitle('');
-    }
+    };
 
     return (
         <form onSubmit={submitHandler}>
