@@ -1,40 +1,36 @@
 import React, {useState} from 'react';
-import CourseInput from './components/CourseGoals/CourseInput/CourseInput';
+import ListInput from './components/ListInput';
+import List from './components/List';
 import './App.css';
-import CourseGoalList from './components/CourseGoals/CourseGoalList/CourseGoalList';
 
-let i = 0;
+let counter = 0;
 const defaultData = [
-    {id: `id_${i++}`, text: `This is ${i} example item`},
-    {id: `id_${i++}`, text: `This is ${i} example item`},
+    {id: `field_${counter++}`, text: `This is the ${counter} field`},
+    {id: `field_${counter++}`, text: `This is the ${counter} field`},
+    {id: `field_${counter++}`, text: `This is the ${counter} field`},
 ];
 
 const App = () => {
-    const [courseGoals, setCourseGoals] = useState(defaultData);
-    const addItemHandler = item => {
-        setCourseGoals(prevItem => {
-            return [item, ...prevItem];
-        });
-    };
+    const [items, setItems] = useState(defaultData);
 
     let content = (
-        <p style={{ textAlign: 'center' }}>No goals found. Maybe add one?</p>
+        <li><p>Sorry, no fields found.</p></li>
     );
 
-    if (courseGoals.length > 0) {
-        content = (
-            <CourseGoalList items={courseGoals}/>
+    if (items.length > 0) {
+        return (
+            content = <List items={items}/>
         );
     }
 
     return (
         <div>
-            <section id="goal-form">
-                <CourseInput onAddItem={addItemHandler}/>
-            </section>
-            <section id="goals">
+            <div>
+                <ListInput/>
+            </div>
+            <div>
                 {content}
-            </section>
+            </div>
         </div>
     );
 };
