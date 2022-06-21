@@ -18,9 +18,7 @@ const App = () => {
     );
 
     if (items.length > 0) {
-        return (
-            content = <List items={items}/>
-        );
+        content = <List items={items}/>;
     }
 
     return (
