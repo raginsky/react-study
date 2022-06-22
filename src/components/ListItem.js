@@ -1,6 +1,11 @@
 const ListItem = props => {
+    const deleteHandler = (e) => {
+        const element = e.target;
+        element.remove();
+    };
+
     return (
-        <li>
+        <li onClick={deleteHandler}>
             {props.text}
         </li>
     );
