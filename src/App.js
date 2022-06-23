@@ -13,6 +13,13 @@ const defaultData = [
 const App = () => {
     const [items, setItems] = useState(defaultData);
 
+    const saveData = (enteredData) => {
+        const data = {
+            ...enteredData,
+            id: Math.random().toString()
+        };
+    };
+
     let content = (
         <li><p>Sorry, no fields found.</p></li>
     );
@@ -24,7 +31,7 @@ const App = () => {
     return (
         <div>
             <div>
-                <ListInput/>
+                <ListInput onSaveExpenseData={saveData}/>
             </div>
             <div>
                 {content}
