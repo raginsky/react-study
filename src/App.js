@@ -1,41 +1,57 @@
-import React, {useState} from 'react';
-import ListInput from './components/ListInput';
-import List from './components/List';
-import NewItem from './components/NewItem';
+import React, { useState } from 'react';
+
+import CourseGoalList from './components/CourseGoals/CourseGoalList/CourseGoalList';
+import CourseInput from './components/CourseGoals/CourseInput/CourseInput';
 import './App.css';
 
-let counter = 0;
-const defaultData = [
-    {id: `field_${counter++}`, text: `This is the ${counter} field`},
-    {id: `field_${counter++}`, text: `This is the ${counter} field`},
-    {id: `field_${counter++}`, text: `This is the ${counter} field`},
-];
-
 const App = () => {
-    const [items, setItems] = useState(defaultData);
+  const [courseGoals, setCourseGoals] = useState([
+    { text: 'Do all exercises!', id: 'g1' },
+    { text: 'Finish the course!', id: 'g2' }
+  ]);
 
-    const saveData = (item) => {
-        setItems(prevData => {
-            return [item, ...prevData];
-        });
-    };
+  const addGoalHandler = enteredText => {
+    setCourseGoals(prevGoals => {
+      const updatedGoals = [...prevGoals];
+      updatedGoals.unshift({ text: enteredText, id: Math.random().toString() });
+      return updatedGoals;
+    });
+  };
 
-    let content = (
-        <li><p>Sorry, no fields found.</p></li>
+  const deleteItemHandler = goalId => {
+    setCourseGoals(prevGoals => {
+      const updatedGoals = prevGoals.filter(goal => goal.id !== goalId);
+      return updatedGoals;
+    });
+  };
+
+  let content = (
+    <p style={{ textAlign: 'center' }}>No goals found. Maybe add one?</p>
+  );
+
+  if (courseGoals.length > 0) {
+    content = (
+      <CourseGoalList items={courseGoals} onDeleteItem={deleteItemHandler} />
     );
+  }
 
-    if (items.length > 0) {
-        content = <List items={items}/>;
-    }
-
-    return (
-        <div>
-            <div>
-                <NewItem onAddItem={saveData}/>
-                {content}
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <section id="goal-form">
+        <CourseInput onAddGoal={addGoalHandler} />
+      </section>
+      <section id="goals">
+        {content}
+        {/* {courseGoals.length > 0 && (
+          <CourseGoalList
+            items={courseGoals}
+            onDeleteItem={deleteItemHandler}
+          />
+        ) // <p style={{ textAlign: 'center' }}>No goals found. Maybe add one?</p>
+        } */}
+      </section>
+    </div>
+  );
 };
 
 export default App;
