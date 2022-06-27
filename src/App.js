@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import ListInput from './components/ListInput';
 import List from './components/List';
+import NewItem from './components/NewItem';
 import './App.css';
 
 let counter = 0;
@@ -13,11 +14,10 @@ const defaultData = [
 const App = () => {
     const [items, setItems] = useState(defaultData);
 
-    const saveData = (enteredData) => {
-        const data = {
-            ...enteredData,
-            id: Math.random().toString()
-        };
+    const saveData = (item) => {
+        setItems(prevData => {
+            return [item, ...prevData];
+        });
     };
 
     let content = (
@@ -31,9 +31,7 @@ const App = () => {
     return (
         <div>
             <div>
-                <ListInput onSaveExpenseData={saveData}/>
-            </div>
-            <div>
+                <NewItem onAddItem={saveData}/>
                 {content}
             </div>
         </div>

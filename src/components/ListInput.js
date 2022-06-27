@@ -9,17 +9,18 @@ const ListInput = props => {
     const submitHandler = (e) => {
         e.preventDefault();
         const data = {
-            title: enteredTitle,
+            text: enteredTitle,
         };
 
-        props.onSubmitForm(data);
+        props.onSaveData(data);
         setEnteredTitle('');
     };
 
 
     return (
         <form onSubmit={submitHandler}>
-            <input value={enteredTitle} onChange={titleChangeHandler} type="text"/>
+            <input value={enteredTitle} onChange={titleChangeHandler}
+                   type="text" placeholder="Enter text"/>
             <button>Submit</button>
         </form>
     );
