@@ -1,0 +1,50 @@
+:root {
+    --white: #fff;
+    --brand: rgba(22, 61, 255, 0.3);
+    --secondary: rgb(86, 74, 145);
+    --radius: 2rem;
+    --height: 2rem;
+}
+
+.main {
+    width: 100%;
+    max-width: 60rem;
+    margin: 2rem auto;
+}
+
+ul {
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--brand);
+    border-radius: var(--radius);
+}
+
+li {
+    list-style: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: var(--brand);
+    border-radius: var(--radius);
+}
+
+form input {
+    width: 100%;
+    height: var(--height);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+form button {
+    width: 60%;
+    color: var(--white);
+    height: var(--height);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    border: none;
+    background-color: var(--secondary);
+}

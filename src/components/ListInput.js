@@ -3,14 +3,20 @@ import {useState} from 'react';
 const ListInput = props => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAge, setEnteredAge] = useState('');
+    const [isValid, setIsValid] = useState(true);
     const titleChangeHandler = (e) => {
+        if(e.target.value.trim().length > 0) {
+            setIsValid(true);
+        }
         setEnteredTitle(e.target.value);
     };
 
     const ageChangeHandler = (e) => {
+        if(e.target.value.trim().length > 0) {
+            setIsValid(true);
+        }
         setEnteredAge(e.target.value);
     };
-
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -18,6 +24,11 @@ const ListInput = props => {
             text: enteredTitle,
             age: enteredAge,
         };
+
+        if(enteredTitle.trim().length === 0 || enteredAge.trim().length) {
+            setIsValid(false);
+            return;
+        }
 
         props.onSaveData(data);
         setEnteredTitle('');

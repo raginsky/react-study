@@ -13,7 +13,7 @@ const App = () => {
     };
 
     let content = (
-        <li><p>Sorry, no fields found.</p></li>
+        <ul><li><p>Sorry, no fields found.</p></li></ul>
     );
 
     if (items.length > 0) {
@@ -21,12 +21,12 @@ const App = () => {
     }
 
     return (
-        <div>
+        <section className="main">
             <div>
                 <NewItem onAddItem={saveData}/>
                 {content}
             </div>
-        </div>
+        </section>
     );
 };
 
