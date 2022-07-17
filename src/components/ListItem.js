@@ -1,5 +1,6 @@
-const ListItem = props => {
+import styles from './ListItem.css'
 
+const ListItem = props => {
     return (
         <li>
             <div>{props.text}</div>

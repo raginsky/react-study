@@ -1,0 +1,6 @@
+ul {
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--brand);
+    border-radius: var(--radius);
+}
