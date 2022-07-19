@@ -1,5 +1,5 @@
 import ListItem from './ListItem';
-import styles from './List.css'
+import styles from './List.module.css'
 
 const List = props => {
     if (props.items.length === 0) {
@@ -9,7 +9,7 @@ const List = props => {
     }
 
     return (
-        <ul>
+        <ul className={styles.list}>
             {props.items.map(item =>
                 <ListItem
                     key={item.id}

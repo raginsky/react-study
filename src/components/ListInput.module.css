@@ -14,7 +14,7 @@ form input {
     font-size: 1rem;
 }
 
-form button {
+.button {
     width: 60%;
     color: var(--white);
     height: var(--height);
@@ -22,4 +22,8 @@ form button {
     font-size: 1rem;
     border: none;
     background-color: var(--secondary);
+}
+
+.invalid {
+    border: 2px solid var(--invalid);
 }
