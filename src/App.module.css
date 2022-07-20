@@ -1,16 +1,23 @@
 :root {
     --white: #fff;
-    --brand: rgba(22, 61, 255, 0.3);
+    --brand: rgb(143, 130, 222);
     --secondary: rgb(86, 74, 145);
     --invalid: #f81d1d;
     --radius: 2rem;
     --height: 2rem;
+    --width: 60rem;
 }
 
 .main {
+    position: relative;
     width: 100%;
+
+}
+
+.content {
     max-width: 60rem;
-    margin: 2rem auto;
+    padding: 2rem;
+    margin: 0 auto;
 }
 
 .list {

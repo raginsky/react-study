@@ -21,22 +21,22 @@ const ListInput = props => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        let errorMessage = '';
-
-        if (enteredAge <= 0 || typeof enteredAge != 'number') {
-            setIsValid(false);
-            errorMessage = 'Must be positive number';
-            return errorMessage;
-        }
+        let errorMessage;
 
         if (enteredTitle.trim().length === 0 || typeof enteredTitle != 'string') {
             setIsValid(false);
-            errorMessage = 'Must be correct name';
-            return errorMessage;
+            errorMessage = 'Title invalid';
+            return props.onError(errorMessage);
+        }
+
+        if (enteredAge <= 0 || typeof enteredAge != 'number') {
+            setIsValid(false);
+            errorMessage = 'Age invalid';
+            return props.onError(errorMessage);
         }
 
         const data = {
-            text: enteredTitle, age: enteredAge, errorMessage,
+            text: enteredTitle, age: enteredAge
         };
 
         props.onSaveData(data);
@@ -46,12 +46,12 @@ const ListInput = props => {
 
 
     return (<form onSubmit={submitHandler}>
-            <input className={!isValid ? styles.invalid : undefined} value={enteredTitle} onChange={titleChangeHandler}
-                   type="text" maxLength="100" placeholder="Enter name"/>
-            <input className={!isValid ? styles.invalid : undefined} value={enteredAge} onChange={ageChangeHandler}
-                   type="number" placeholder="Enter age"/>
-            <button className={styles.button}>Submit</button>
-        </form>);
+        <input className={!isValid ? styles.invalid : undefined} value={enteredTitle} onChange={titleChangeHandler}
+               type="text" maxLength="100" placeholder="Enter name"/>
+        <input className={!isValid ? styles.invalid : undefined} value={enteredAge} onChange={ageChangeHandler}
+               type="number" placeholder="Enter age"/>
+        <button className={styles.button}>Submit</button>
+    </form>);
 };
 
 export default ListInput;
