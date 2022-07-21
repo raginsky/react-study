@@ -48,3 +48,7 @@
     background-color: var(--secondary);
     cursor: pointer;
 }
+
+.hidden {
+    display: none;
+}

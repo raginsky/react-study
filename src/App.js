@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from './App.module.css';
 import List from './components/List';
 import NewItem from './components/NewItem';
-import ErrorPopup from './components/errorPopup';
+import ErrorPopup from './components/ErrorPopup';
 
 const App = () => {
     const [items, setItems] = useState([]);
