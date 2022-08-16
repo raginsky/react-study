@@ -21,18 +21,13 @@ const ListInput = props => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        let errorMessage;
 
         if (enteredTitle.trim().length === 0 || typeof enteredTitle != 'string') {
             setIsValid(false);
-            errorMessage = 'Title invalid';
-            return props.onError(errorMessage);
         }
 
         if (enteredAge <= 0 || typeof enteredAge != 'number') {
             setIsValid(false);
-            errorMessage = 'Age invalid';
-            return props.onError(errorMessage);
         }
 
         const data = {
