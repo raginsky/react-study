@@ -20,39 +20,44 @@ const ListInput = (props) => {
     setEnteredAge(Number(e.target.value));
   };
 
-  const validation = () => {
-    let errorMsg = [];
+  const validation = errorMsg => {
+    // let errorMsg = [];
 
     if (enteredTitle.trim().length === 0 || typeof enteredTitle != "string") {
-      setIsValid(false);
+      // setIsValid(false);
       errorMsg.push("title error");
       // TODO: try to push it as prop, same as successful form does
       // props.onError(errorMsg);
+      // return errorMsg;
     }
 
     if (enteredAge <= 0 || typeof enteredAge != "number") {
-      setIsValid(false);
+      // setIsValid(false);
       errorMsg.push("age error");
       // TODO: try to push it as prop, same as successful form does
       // props.onError(errorMsg);
+      // return errorMsg;
     }
-
     console.log(errorMsg);
+    return errorMsg;
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    let errorMsg = [];
+    validation(errorMsg);
+
+    if (errorMsg.length) {
+      setIsValid(false);
+      return;
+    }
 
     const data = {
       text: enteredTitle,
       age: enteredAge,
     };
 
-    validation();
-
-    if (!isValid) {
-      return;
-    }
     props.onSaveData(data);
     setEnteredTitle("");
     setEnteredAge("");
