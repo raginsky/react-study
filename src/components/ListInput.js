@@ -20,23 +20,15 @@ const ListInput = (props) => {
     setEnteredAge(Number(e.target.value));
   };
 
-  const validation = errorMsg => {
-    // let errorMsg = [];
-
+  const validation = (errorMsg) => {
     if (enteredTitle.trim().length === 0 || typeof enteredTitle != "string") {
-      // setIsValid(false);
       errorMsg.push("title error");
-      // TODO: try to push it as prop, same as successful form does
-      // props.onError(errorMsg);
-      // return errorMsg;
+      props.onError(errorMsg);
     }
 
     if (enteredAge <= 0 || typeof enteredAge != "number") {
-      // setIsValid(false);
       errorMsg.push("age error");
-      // TODO: try to push it as prop, same as successful form does
-      // props.onError(errorMsg);
-      // return errorMsg;
+      props.onError(errorMsg);
     }
     console.log(errorMsg);
     return errorMsg;

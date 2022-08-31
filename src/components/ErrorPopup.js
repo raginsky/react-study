@@ -4,7 +4,11 @@ import styles from "./ErrorPopup.module.css";
 const ErrorPopup = (props) => {
   const [isValid, setIsValid] = useState(true);
 
-  if (props.errorMessage !== undefined) {
+  const test = (errorMsg) => {
+    props.onError(errorMsg)
+  }
+
+  if (props.errorMsg !== undefined) {
     setIsValid(false);
   } else {
     return;
@@ -20,7 +24,7 @@ const ErrorPopup = (props) => {
       <div className={styles.popup}>
         <div className={styles.header}>Invalid input</div>
         <div className={styles.body}>
-          <div>{props.errorMessage}</div>
+          <div>{props.errorMsg}</div>
           <button className={styles.button} onClick={hidePopup}>
             Okay
           </button>

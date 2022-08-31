@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./App.module.css";
 import List from "./components/List";
 import NewItem from "./components/NewItem";
+import ErrorPopup from "./components/ErrorPopup";
 
 const App = () => {
   const [items, setItems] = useState([]);
@@ -11,6 +12,10 @@ const App = () => {
       return [item, ...prevData];
     });
   };
+
+  const errorMsg = (error) => {
+    console.log(error);
+  }
 
   let content = (
     <ul className={styles.list}>
@@ -23,12 +28,14 @@ const App = () => {
   if (items.length > 0) {
     content = <List items={items} />;
   }
+  
 
   return (
     <section className={styles.main}>
       <div className={styles.content}>
         <NewItem onAddItem={saveData} />
         {content}
+        <ErrorPopup onError={errorMsg}/>
       </div>
     </section>
   );
